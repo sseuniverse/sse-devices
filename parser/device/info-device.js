@@ -6,7 +6,7 @@ const DataPacker = require('./../../lib/data-packer');
 ### Get more information about a device (experimental)
 > year, weight, release, display.size, display.resolution, display.ratio
 ```js
-const InfoDevice = require('node-device-detector/parser/device/info-device');
+const InfoDevice = require('@ssets/device/parser/device/info-device');
 const infoDevice = new InfoDevice();
 const result = infoDevice.info('Asus', 'Zenfone 4');
 console.log('Result information about device', result);

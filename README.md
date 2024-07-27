@@ -11,10 +11,10 @@ Port php lib [matomo-org/device-detector](https://github.com/matomo-org/device-d
 
 ## Code Status <a name="top"></a>
 
-![Chai](https://github.com/sanchezzzhak/node-device-detector/workflows/Tests/badge.svg?branch=master)
-![YAML Lint](https://github.com/sanchezzzhak/node-device-detector/workflows/YAML%20Lint/badge.svg?branch=master)
-![Prettier](https://github.com/sanchezzzhak/node-device-detector/workflows/Prettier/badge.svg?branch=master)
-![CodeQL](https://github.com/sanchezzzhak/node-device-detector/workflows/CodeQL/badge.svg?branch=master)
+![Chai](https://github.com/sanchezzzhak/@ssets/device/workflows/Tests/badge.svg?branch=master)
+![YAML Lint](https://github.com/sanchezzzhak/@ssets/device/workflows/YAML%20Lint/badge.svg?branch=master)
+![Prettier](https://github.com/sanchezzzhak/@ssets/device/workflows/Prettier/badge.svg?branch=master)
+![CodeQL](https://github.com/sanchezzzhak/@ssets/device/workflows/CodeQL/badge.svg?branch=master)
 ## Contents
 
 + [Helpers](#helpers)
@@ -110,10 +110,10 @@ Result parse empty
 ```js
 // commonJS
 const DeviceDetector = require('node-device-detector');
-const DeviceHelper = require('node-device-detector/helper');
+const DeviceHelper = require('@ssets/device/helper');
 // or ESModule
 import DeviceDetector from "node-device-detector";
-import DeviceHelper from "node-device-detector/helper";
+import DeviceHelper from "@ssets/device/helper";
 
 const detector = new DeviceDetector();
 const userAgent = 'Mozilla/5.0 (Linux; Android 5.0; NX505J Build/KVT49L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.78 Mobile Safari/537.36';
@@ -164,12 +164,12 @@ Using DeviceDetector + ClientHints
 ```js
 // commonJS
 const DeviceDetector = require('node-device-detector');
-const DeviceHelper   = require('node-device-detector/helper');
-const ClientHints    = require('node-device-detector/client-hints');
+const DeviceHelper   = require('@ssets/device/helper');
+const ClientHints    = require('@ssets/device/client-hints');
 // or ESModule
 import DeviceDetector from "node-device-detector";
-import DeviceHelper from "node-device-detector/helper";
-import ClientHints from "node-device-detector/client-hints";
+import DeviceHelper from "@ssets/device/helper";
+import ClientHints from "@ssets/device/client-hints";
 
 const detector = new DeviceDetector({
   clientIndexes: true,
@@ -344,7 +344,7 @@ const aliasDevice = detector.getParseAliasDevice();
 const result = aliasDevice.parse(userAgent);
 console.log('Result parse code model', result);
 // or
-const AliasDevice = require('node-device-detector/parser/device/alias-device');
+const AliasDevice = require('@ssets/device/parser/device/alias-device');
 const userAgent = 'Mozilla/5.0 (Linux; Android 5.0; NX505J Build/KVT49L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.78 Mobile Safari/537.36';
 const aliasDevice = new AliasDevice();
 const result = aliasDevice.parse(userAgent);
@@ -508,7 +508,7 @@ const infoDevice = detector.getParseInfoDevice();
 const result = infoDevice.info('Asus', 'Zenfone 4');
 console.log('Result information', result);
 // or 
-const InfoDevice = require('node-device-detector/parser/device/info-device');
+const InfoDevice = require('@ssets/device/parser/device/info-device');
 const infoDevice = new InfoDevice();
 const result = infoDevice.info('Asus', 'Zenfone 4');
 console.log('Result information', result);
@@ -536,7 +536,7 @@ is not found result null
 ```
 Cast methods
 ```js
-const InfoDevice = require('node-device-detector/parser/device/info-device');
+const InfoDevice = require('@ssets/device/parser/device/info-device');
 const infoDevice = new InfoDevice;
 infoDevice.setSizeConvertObject(true);
 infoDevice.setResolutionConvertObject(true);
