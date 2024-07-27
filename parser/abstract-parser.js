@@ -1,12 +1,12 @@
-const helper = require("./helper");
-const BASE_REGEXES_DIR = __dirname + "/../regexes/";
+const helper = require('./helper');
+const BASE_REGEXES_DIR = __dirname + '/../regexes/';
 
 /**
  * @param {string} result
  * @return {string}
  */
 function fixStringName(result) {
-  return result.replace(new RegExp("_", "g"), " ").replace(/ TD$/i, "");
+  return result.replace(new RegExp('_', 'g'), ' ').replace(/ TD$/i, '');
 }
 
 /**
@@ -14,8 +14,8 @@ function fixStringName(result) {
  * @return {string}
  */
 function fixStringVersion(result) {
-  result = result.replace(new RegExp("_", "g"), ".");
-  result = result.replace(new RegExp("[.]$", "g"), "");
+  result = result.replace(new RegExp('_', 'g'), '.');
+  result = result.replace(new RegExp('[.]$', 'g'), '');
   return result.trim();
 }
 
@@ -65,7 +65,7 @@ class ParserAbstract {
    * @return {string|*}
    */
   buildByMatch(item, matches) {
-    item = item || "";
+    item = item || '';
     item = item.toString();
     return helper.matchReplace(item, matches);
   }
@@ -76,10 +76,10 @@ class ParserAbstract {
    * @return {RegExp}
    */
   getBaseRegExp(str) {
-    str = str.replace(new RegExp("/", "g"), "\\/");
-    str = str.replace(new RegExp("\\+\\+", "g"), "+");
-    str = "(?:^|[^A-Z0-9_-]|[^A-Z0-9-]_|sprd-|MZ-)(?:" + str + ")";
-    return new RegExp(str, "i");
+    str = str.replace(new RegExp('/', 'g'), '\\/');
+    str = str.replace(new RegExp('\\+\\+', 'g'), '+');
+    str = '(?:^|[^A-Z0-9_-]|[^A-Z0-9-]_|sprd-|MZ-)(?:' + str + ')';
+    return new RegExp(str, 'i');
   }
 
   /**
@@ -89,7 +89,7 @@ class ParserAbstract {
    */
   buildModel(model, matches) {
     model = fixStringName(this.buildByMatch(model, matches));
-    return model === "Build" ? null : model;
+    return model === 'Build' ? null : model;
   }
 
   /**
@@ -133,7 +133,7 @@ class ParserAbstract {
    */
   buildVersion(version, matches) {
     version = fixStringVersion(this.buildByMatch(version, matches));
-    const skipVersion = ["Portable", ""];
+    const skipVersion = ['Portable', ''];
     if (skipVersion.indexOf(version) !== -1) {
       return version;
     }

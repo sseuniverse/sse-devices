@@ -4,13 +4,14 @@
   "description": "Device Detector",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier": "prettier --write .",
+    "eslint": "eslint . --ext .jsx,.ts,.tsx"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sseuniverse/sse-devices.git"
   },
-  "author": "SSE World, SSE Universe",
+  "author": "SSE World",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sseuniverse/sse-devices/issues"
@@ -42,5 +43,8 @@
     "eslint": "^8.57.0",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
   }
 }

@@ -1,5 +1,5 @@
-const YAML = require("js-yaml");
-const fs = require("fs");
+const YAML = require('js-yaml');
+const fs = require('fs');
 
 /**
  * match for base regex rule
@@ -8,21 +8,21 @@ const fs = require("fs");
  * @returns {RegExpExecArray}
  */
 function matchUserAgent(str, userAgent) {
-  str = str.replace(new RegExp("/", "g"), "\\/");
-  let regex = "(?:^|[^A-Z_-])(?:" + str + ")";
-  let match = new RegExp(regex, "i");
+  str = str.replace(new RegExp('/', 'g'), '\\/');
+  let regex = '(?:^|[^A-Z_-])(?:' + str + ')';
+  let match = new RegExp(regex, 'i');
   return match.exec(userAgent);
 }
 
 function matchReplace(template, matches) {
   let max = matches.length - 1 || 1;
-  if (template.indexOf("$") !== -1) {
+  if (template.indexOf('$') !== -1) {
     for (let nb = 1; nb <= max; nb++) {
-      if (template.indexOf("$" + nb) === -1) {
+      if (template.indexOf('$' + nb) === -1) {
         continue;
       }
-      let replace = matches[nb] !== void 0 ? matches[nb] : "";
-      template = template.replace(new RegExp("\\$" + nb, "g"), replace);
+      let replace = matches[nb] !== void 0 ? matches[nb] : '';
+      template = template.replace(new RegExp('\\$' + nb, 'g'), replace);
     }
   }
   return template;
@@ -38,8 +38,8 @@ function fuzzyCompare(val1, val2) {
   return (
     val1 !== null &&
     val2 !== null &&
-    val1.replace(/ /gi, "").toLowerCase() ===
-      val2.replace(/ /gi, "").toLowerCase()
+    val1.replace(/ /gi, '').toLowerCase() ===
+      val2.replace(/ /gi, '').toLowerCase()
   );
 }
 function fuzzyCompareNumber(value1, value2, num = 3) {
@@ -70,8 +70,8 @@ function versionCompare(ver1, ver2) {
   if (ver1 === ver2) {
     return 0;
   }
-  let left = ver1.split(".");
-  let right = ver2.split(".");
+  let left = ver1.split('.');
+  let right = ver2.split('.');
   let len = Math.min(left.length, right.length);
   for (let i = 0; i < len; i++) {
     if (left[i] === right[i]) {
@@ -99,15 +99,15 @@ function versionCompare(ver1, ver2) {
  * @returns {string}
  */
 function versionTruncate(version, maxMinorParts) {
-  let versionParts = String(version).split(".");
+  let versionParts = String(version).split('.');
   if (
     maxMinorParts !== null &&
-    maxMinorParts !== "" &&
+    maxMinorParts !== '' &&
     versionParts.length > maxMinorParts
   ) {
     versionParts = versionParts.slice(0, 1 + maxMinorParts);
   }
-  return versionParts.join(".");
+  return versionParts.join('.');
 }
 
 /**
@@ -117,8 +117,8 @@ function versionTruncate(version, maxMinorParts) {
 function hasAndroidTableFragment(userAgent) {
   return (
     matchUserAgent(
-      "Android( [.0-9]+)?; Tablet;|Tablet(?! PC)|.*-tablet$",
-      userAgent
+      'Android( [.0-9]+)?; Tablet;|Tablet(?! PC)|.*-tablet$',
+      userAgent,
     ) !== null
   );
 }
@@ -128,7 +128,7 @@ function hasAndroidTableFragment(userAgent) {
  * @returns {boolean}
  */
 function hasOperaTableFragment(userAgent) {
-  return matchUserAgent("Opera Tablet", userAgent) !== null;
+  return matchUserAgent('Opera Tablet', userAgent) !== null;
 }
 
 /**
@@ -137,12 +137,12 @@ function hasOperaTableFragment(userAgent) {
  * @returns {boolean}
  */
 function hasTouchFragment(userAgent) {
-  return matchUserAgent("Touch", userAgent) !== null;
+  return matchUserAgent('Touch', userAgent) !== null;
 }
 
 function hasVRFragment(userAgent) {
   return (
-    matchUserAgent("Android( [.0-9]+)?; Mobile VR;| VR ", userAgent) !== null
+    matchUserAgent('Android( [.0-9]+)?; Mobile VR;| VR ', userAgent) !== null
   );
 }
 
@@ -152,7 +152,7 @@ function hasVRFragment(userAgent) {
  */
 function hasAndroidMobileFragment(userAgent) {
   return (
-    matchUserAgent("Android( [.0-9]+)?; Mobile;|.*-mobile$", userAgent) !== null
+    matchUserAgent('Android( [.0-9]+)?; Mobile;|.*-mobile$', userAgent) !== null
   );
 }
 
@@ -162,7 +162,7 @@ function hasAndroidMobileFragment(userAgent) {
  * @returns {boolean}
  */
 function hasOperaTVStoreFragment(userAgent) {
-  return matchUserAgent("Opera TV Store| OMI/", userAgent) !== null;
+  return matchUserAgent('Opera TV Store| OMI/', userAgent) !== null;
 }
 
 /**
@@ -173,8 +173,8 @@ function hasOperaTVStoreFragment(userAgent) {
 function hasAndroidTVFragment(userAgent) {
   return (
     matchUserAgent(
-      "Andr0id|(?:Android(?: UHD)?|Google) TV|[(]lite[)] TV|BRAVIA|[(]TV;| TV$",
-      userAgent
+      'Andr0id|(?:Android(?: UHD)?|Google) TV|[(]lite[)] TV|BRAVIA|[(]TV;| TV$',
+      userAgent,
     ) !== null
   );
 }
@@ -185,7 +185,7 @@ function hasAndroidTVFragment(userAgent) {
  * @returns {boolean}
  */
 function hasTVFragment(userAgent) {
-  return matchUserAgent("SmartTV|Tizen.+ TV .+$", userAgent) !== null;
+  return matchUserAgent('SmartTV|Tizen.+ TV .+$', userAgent) !== null;
 }
 
 /**
@@ -194,7 +194,7 @@ function hasTVFragment(userAgent) {
  * @returns {boolean}
  */
 function hasDesktopFragment(userAgent) {
-  return matchUserAgent("Desktop(?: (x(?:32|64)|WOW64))?;", userAgent) !== null;
+  return matchUserAgent('Desktop(?: (x(?:32|64)|WOW64))?;', userAgent) !== null;
 }
 
 /**
@@ -223,7 +223,7 @@ function revertObject(obj) {
     ...Object.entries(obj).map(([a, b]) => ({
       [b]: a,
     })),
-    {}
+    {},
   );
 }
 
@@ -261,22 +261,22 @@ function trimChars(str, chars) {
 function getGroupForUserAgentTokens(tokens) {
   let groupIndex = 0;
   return tokens.reduce((group = {}, token) => {
-    if (token === "") {
+    if (token === '') {
       return;
     }
     let data = token.match(/^\((.*)\)$/);
     if (data !== null) {
       groupIndex++;
-      group["#" + groupIndex] = data[1].split(/[;,] /);
+      group['#' + groupIndex] = data[1].split(/[;,] /);
       return group;
     }
-    let rowSlash = token.split("/");
+    let rowSlash = token.split('/');
     if (rowSlash.length === 2) {
       group[rowSlash[0]] = rowSlash[1];
       return group;
     }
     groupIndex++;
-    group["#" + groupIndex] = token;
+    group['#' + groupIndex] = token;
     return group;
   }, {});
 }
@@ -298,11 +298,11 @@ function splitUserAgent(userAgent) {
 
   let parts = [];
   for (let key in groups) {
-    if (typeof groups[key] !== "string" || !groups[key]) {
+    if (typeof groups[key] !== 'string' || !groups[key]) {
       continue;
     }
 
-    if (key && String(key).charAt(0) === "#") {
+    if (key && String(key).charAt(0) === '#') {
       if (!groups[key].match(/[/;]/i) && !groups[key].match(/^\s*[\d.]+/i)) {
         parts.push(String(groups[key]).toLowerCase());
         continue;
@@ -312,8 +312,8 @@ function splitUserAgent(userAgent) {
 
     parts.push(String(key).toLowerCase());
   }
-  let hash = createHash(parts.join(".")).replace("-", "");
-  let path = parts.join(".");
+  let hash = createHash(parts.join('.')).replace('-', '');
+  let path = parts.join('.');
 
   // console.log({tokens, groups, hash, path});
 
