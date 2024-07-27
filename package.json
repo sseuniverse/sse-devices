@@ -1,0 +1,46 @@
+{
+  "name": "@ssets/device",
+  "version": "1.0.0",
+  "description": "Device Detector",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sseuniverse/sse-devices.git"
+  },
+  "author": "SSE World, SSE Universe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sseuniverse/sse-devices/issues"
+  },
+  "homepage": "https://github.com/sseuniverse/sse-devices#readme",
+  "keywords": [
+    "device-detector",
+    "device detect",
+    "detect mobile",
+    "detect tablet",
+    "detect phablet",
+    "detect os",
+    "detect browser",
+    "detect device brand",
+    "detect device model",
+    "detect user-agent",
+    "detect trusted device",
+    "client-hints",
+    "useragent",
+    "ssets",
+    "sseworld",
+    "sseuniverse"
+  ],
+  "devDependencies": {
+    "@fast-csv/format": "^5.0.0",
+    "@fast-csv/parse": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  }
+}
